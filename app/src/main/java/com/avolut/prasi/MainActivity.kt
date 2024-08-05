@@ -1,7 +1,6 @@
 package com.avolut.prasi
 
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.ViewGroup
@@ -16,7 +15,6 @@ import androidx.activity.addCallback
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -24,7 +22,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.content.ContextCompat
 import com.avolut.prasi.ui.theme.PrasiTheme
 
 class MainActivity : ComponentActivity() {
@@ -100,7 +97,7 @@ fun WebViewContent(
         if (webview.canGoBack()) {
           webview.goBack()
         } else {
-          activity.onBackPressed()
+          activity.moveTaskToBack(true)
         }
       }
 
@@ -130,9 +127,9 @@ fun WebViewContent(
           getContent.launch(type)
           return true
         }
-      });
+      })
 
-      webview;
+      webview
     }, modifier = modifier.fillMaxSize()
   )
 }

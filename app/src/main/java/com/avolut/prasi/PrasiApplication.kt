@@ -17,10 +17,6 @@ class PrasiApplication : Application() {
       this.currentActivity?.showWebview()
     }
 
-    val version = Bundle.version
-    val site_id = Bundle.site_id
-    val base_url = Bundle.base_url
-    print(version)
   }
 
 }

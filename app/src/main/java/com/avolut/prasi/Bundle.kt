@@ -1,5 +1,6 @@
 package com.avolut.prasi
 
+import Decompress
 import android.content.ContentValues
 import android.content.Context
 import android.content.ContextWrapper
@@ -66,18 +67,18 @@ object Bundle {
     return executeList(selection, path)
   }
 
-  fun listLikeOr(paths: Array<String>): MutableList<BundleItem> {
-    val selection = paths.joinToString(" OR ") { "${BundleEntry.PATH} like ?" }
-    return executeList(selection, paths)
-  }
-
-  fun listLike(path: String): MutableList<BundleItem> {
-
-    val selection = "${BundleEntry.PATH} like ?"
-    val selectionArgs = arrayOf(path)
-
-    return executeList(selection, selectionArgs)
-  }
+//  fun listLikeOr(paths: Array<String>): MutableList<BundleItem> {
+//    val selection = paths.joinToString(" OR ") { "${BundleEntry.PATH} like ?" }
+//    return executeList(selection, paths)
+//  }
+//
+//  fun listLike(path: String): MutableList<BundleItem> {
+//
+//    val selection = "${BundleEntry.PATH} like ?"
+//    val selectionArgs = arrayOf(path)
+//
+//    return executeList(selection, selectionArgs)
+//  }
 
   fun listExact(path: String): MutableList<BundleItem> {
 
@@ -169,7 +170,7 @@ object Bundle {
     val items = mutableListOf<BundleItem>()
     with(cursor) {
       while (moveToNext()) {
-        val path = getString(getColumnIndexOrThrow(com.avolut.prasi.Bundle.BundleEntry.PATH))
+        val path = getString(getColumnIndexOrThrow(BundleEntry.PATH))
         val ext = path.substringAfterLast('.', "")
         if (BINARY_EXTENSION.contains(ext)) {
           items.add(
@@ -198,7 +199,6 @@ object Bundle {
   }
 
   object BundleEntry : BaseColumns {
-    const val TABLE_NAME = "files"
     const val PATH = "path"
     const val CONTENT = "content"
     const val TYPE = "type"

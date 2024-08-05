@@ -1,8 +1,6 @@
 import android.content.Context
 import android.util.Log
 import java.io.File
-import java.io.FileInputStream
-import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
@@ -14,24 +12,15 @@ object Decompress {
   private const val TAG = "Decompress"
 
   fun unzipFromAssets(context: Context, zipFile: String?, destination: String?) {
-    var destination = destination
+    var dest = destination
     try {
-      if (destination == null || destination.length == 0) destination =
-        context.getFilesDir().getAbsolutePath()
+      if (dest.isNullOrEmpty()) dest =
+        context.filesDir.absolutePath
       if (zipFile != null) {
-        val stream: InputStream = context.getAssets().open(zipFile)
-        unzip(stream, destination)
+        val stream: InputStream = context.assets.open(zipFile)
+        unzip(stream, dest)
       }
     } catch (e: IOException) {
-      e.printStackTrace()
-    }
-  }
-
-  fun unzip(zipFile: String?, location: String?) {
-    try {
-      val fin = FileInputStream(zipFile)
-      unzip(fin, location)
-    } catch (e: FileNotFoundException) {
       e.printStackTrace()
     }
   }
@@ -41,7 +30,7 @@ object Decompress {
     val buffer = ByteArray(BUFFER_SIZE)
     try {
       val zin = ZipInputStream(stream)
-      var ze: ZipEntry? = null
+      var ze: ZipEntry?
 
       while ((zin.nextEntry.also { ze = it }) != null) {
         Log.v(TAG, "Unzipping " + ze!!.name)

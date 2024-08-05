@@ -42,7 +42,6 @@ ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx
 ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktorServerContentNegotiation" }
 ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktorServerCore" }
 ktor-server-netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktorServerNetty" }
-net-lingala-zip4j = { module = "zip4j:net.lingala.zip4j", version.ref = "netLingalaZip4j" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

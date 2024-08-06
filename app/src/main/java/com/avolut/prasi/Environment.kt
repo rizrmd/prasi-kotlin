@@ -14,14 +14,12 @@ import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
 import io.ktor.server.routing.routing
-import io.ktor.util.date.getTimeMillis
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.jsonObject
 
 object Environment {
-  private var clock: () -> Long = { getTimeMillis() }
   private val environment = applicationEngineEnvironment {
     connector {
       port = 17564
@@ -46,6 +44,7 @@ object Environment {
   <script>
     window._prasi = { 
       basepath: "/", 
+      platform: "android",
       site_id: "${Bundle.version}",
     }
   </script>
@@ -75,7 +74,7 @@ object Environment {
                 val comps = buildJsonObject {
                   res.forEach { e ->
                     if (e.text != null) {
-                      val json = Json.parseToJsonElement(e.text!!).jsonObject;
+                      val json = Json.parseToJsonElement(e.text!!).jsonObject
                       val ctree = json.get("content_tree")
                       if (ctree != null) {
                         put(

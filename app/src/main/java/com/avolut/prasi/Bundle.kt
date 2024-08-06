@@ -26,14 +26,14 @@ object Bundle {
       return ""
     }
 
-  val site_id: String?
+  val siteId: String?
     get() {
       val list = listIn(arrayOf("site_id"))
       if (list.size > 0) return list[0].text
       return ""
     }
 
-  val base_url: String?
+  val baseUrl: String?
     get() {
       val list = listIn(arrayOf("base_url"))
       if (list.size > 0) return list[0].text

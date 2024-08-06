@@ -26,12 +26,12 @@ object Bundle {
       return ""
     }
 
-  val siteId: String?
-    get() {
-      val list = listIn(arrayOf("site_id"))
-      if (list.size > 0) return list[0].text
-      return ""
-    }
+//  val siteId: String?
+//    get() {
+//      val list = listIn(arrayOf("site_id"))
+//      if (list.size > 0) return list[0].text
+//      return ""
+//    }
 
   val baseUrl: String?
     get() {
@@ -176,8 +176,8 @@ object Bundle {
           items.add(
             BundleItem(
               path,
-              type = getString(getColumnIndexOrThrow(com.avolut.prasi.Bundle.BundleEntry.TYPE)),
-              blob = getBlob(getColumnIndexOrThrow(com.avolut.prasi.Bundle.BundleEntry.CONTENT)),
+              type = getString(getColumnIndexOrThrow(BundleEntry.TYPE)),
+              blob = getBlob(getColumnIndexOrThrow(BundleEntry.CONTENT)),
               text = null
             )
           )
@@ -185,9 +185,9 @@ object Bundle {
           items.add(
             BundleItem(
               path,
-              type = getString(getColumnIndexOrThrow(com.avolut.prasi.Bundle.BundleEntry.TYPE)),
+              type = getString(getColumnIndexOrThrow(BundleEntry.TYPE)),
               blob = null,
-              text = getString(getColumnIndexOrThrow(com.avolut.prasi.Bundle.BundleEntry.CONTENT))
+              text = getString(getColumnIndexOrThrow(BundleEntry.CONTENT))
             )
           )
         }
